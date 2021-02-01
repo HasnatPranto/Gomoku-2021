@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_game/gameCore/goLogic.dart';
@@ -88,10 +89,25 @@ class _GamepageState extends State<Gamepage> {
         )
     );
   }
+  bool first_move = false;
+  Random random = new Random();
+
   Future AI_makeYourMove() async{
 
-    MiniMax mnx= new MiniMax();
-    mnx.getOptimalMove_AI();
+    if(!first_move){
+      int i = random.nextInt(10);
+      int j = random.nextInt(10);
+      if(BoardState.board[i][j]== null)
+      _boardState.placeStone(i, j, 0);
+      else
+        _boardState.placeStone(i-1, j+1, 0);
+      
+      first_move = true;
+    }
+    else {
+      MiniMax mnx = new MiniMax();
+      mnx.getOptimalMove_AI();
+    }
   }
 
   void handleGameLoop(int i, int j) async{
