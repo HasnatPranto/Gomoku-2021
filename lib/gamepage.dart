@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_game/gameCore/goLogic.dart';
 import 'package:go_game/gameCore/minimax.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 import 'boardstate.dart';
 
@@ -12,6 +13,8 @@ class Gamepage extends StatefulWidget {
 }
 
 class _GamepageState extends State<Gamepage> {
+
+  static AudioCache player = new AudioCache();
 
   GoLogic _goLogic = new GoLogic();
   BoardState _boardState = new BoardState();
@@ -182,20 +185,9 @@ class _GamepageState extends State<Gamepage> {
                                           new BorderRadius.circular(3.0),
                                         ),
                                         onPressed: () {
-                                          //Flame.audio.play('tile.wav');
+                                         player.play('audio/tile.wav');
                                           setState(() {
-                                            /*if (BoardState.board[i][j] == null &&
-                                               BoardState.turn % 2 == 0) {
-                                             AI_makeYourMove();
-                                             dialogueGameOver(0);
-                                           } else if (BoardState.board[i][j] ==
-                                               null &&
-                                               BoardState.turn % 2 == 1) {*/
                                             handleGameLoop(i, j);
-                                            //print(BoardState.board);
-                                            //}
-                                            //handleGameLoop(i,j);
-                                            //print(BoardState.board);
                                           });
                                         },
                                       ),
