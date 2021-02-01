@@ -79,7 +79,7 @@ class _GamepageState extends State<Gamepage> {
   }
 
   Object definitiveDialogue(int playerMark){
-    String result = (playerMark == 0)? 'Lossed..' : 'Win!';
+    String result = (playerMark == 0)? 'Lossed..' : 'Won!';
     gameOver = true;
     showDialog(
         context: context,
